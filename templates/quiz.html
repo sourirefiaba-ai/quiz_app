@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}問題 {{ current }} / {{ total }}{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">問題 {{ current }} / {{ total }}</h2>
+<p class="mb-4">{{ question.question }}</p>
+
+<form method="post" action="{{ url_for('check') }}">
+    {% for choice in choices %}
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="{{ 'checkbox' if is_multiple else 'radio' }}" id="choice{{ loop.index }}" name="choice" value="{{ choice }}">
+            <label class="form-check-label" for="choice{{ loop.index }}">{{ choice }}</label>
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary mt-3">送信</button>
+</form>
+
+<form method="post" action="{{ url_for('abort') }}">
+    <button type="submit" class="btn btn-danger mt-3">途中で中断してトップに戻る</button>
+</form>
+{% endblock %}

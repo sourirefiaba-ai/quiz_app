@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}回答結果{% endblock %}
+
+{% block content %}
+{% if is_correct %}
+    <h2 class="text-success">正解！最高！</h2>
+{% else %}
+    <h2 class="text-danger">( ；∀；)</h2>
+{% endif %}
+
+<h3 class="mt-4">あなたの答え</h3>
+{% if selected is iterable and selected is not string %}
+    <ul class="list-unstyled">
+    {% for ans in selected %}
+        <li>
+            <input type="checkbox" checked disabled style="margin-right: 8px;">
+            <span>{{ ans }}</span>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>● {{ selected }}</p>
+{% endif %}
+
+<h3 class="mt-4">正解</h3>
+{% if answer is iterable and answer is not string %}
+    <ul class="list-unstyled">
+    {% for ans in answer %}
+        <li>
+            <input type="checkbox" checked disabled style="margin-right: 8px;">
+            <strong>{{ ans }}</strong>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p><strong>● {{ answer }}</strong></p>
+{% endif %}
+
+<a href="{{ url_for('next_question') }}" class="btn btn-primary mt-4">次の問題へ</a>
+{% endblock %}
