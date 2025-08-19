@@ -5,5 +5,26 @@
 {% block content %}
 <h1>結果発表</h1>
 <p>あなたのスコア: {{ score }} / {{ total }}</p>
+
+<h2>トピック別成績</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>トピック</th>
+            <th>正解</th>
+            <th>不正解</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for topic, scores in topic_scores.items() %}
+        <tr>
+            <td>{{ topic }}</td>
+            <td>{{ scores.correct }}</td>
+            <td>{{ scores.incorrect }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 <a href="{{ url_for('index') }}" class="btn btn-secondary">トップに戻る</a>
 {% endblock %}

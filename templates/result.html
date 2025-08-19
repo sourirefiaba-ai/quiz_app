@@ -3,11 +3,15 @@
 {% block title %}回答結果{% endblock %}
 
 {% block content %}
+
 {% if is_correct %}
     <h2 class="text-success">正解！最高！</h2>
 {% else %}
     <h2 class="text-danger">( ；∀；)</h2>
 {% endif %}
+
+<h3 class="mt-4">問題</h3>
+<p>{{ question['question'] }}</p>
 
 <h3 class="mt-4">あなたの答え</h3>
 {% if selected is iterable and selected is not string %}
@@ -35,6 +39,11 @@
     </ul>
 {% else %}
     <p><strong>● {{ answer }}</strong></p>
+{% endif %}
+
+{% if question.explanation %}
+    <h3 class="mt-4">解説</h3>
+    <p>{{ question.explanation }}</p>
 {% endif %}
 
 <a href="{{ url_for('next_question') }}" class="btn btn-primary mt-4">次の問題へ</a>

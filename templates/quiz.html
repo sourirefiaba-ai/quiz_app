@@ -16,7 +16,10 @@
     <button type="submit" class="btn btn-primary mt-3">送信</button>
 </form>
 
-<form method="post" action="{{ url_for('abort') }}">
-    <button type="submit" class="btn btn-danger mt-3">途中で中断してトップに戻る</button>
+<form method="get" action="{{ url_for('final_result') }}">
+    <button type="submit" style="margin-top:10px;">途中で中断する</button>
 </form>
+
+
+
 {% endblock %}
