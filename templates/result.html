@@ -43,7 +43,7 @@
 
 {% if question.explanation %}
     <h3 class="mt-4">解説</h3>
-    <p>{{ question.explanation }}</p>
+    <p>{{ question.explanation.replace('\n', '<br>') | safe }}</p>
 {% endif %}
 
 <a href="{{ url_for('next_question') }}" class="btn btn-primary mt-4">次の問題へ</a>
